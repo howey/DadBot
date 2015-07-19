@@ -113,24 +113,19 @@ class WebhookHandler(webapp2.RequestHandler):
                 reply('Bot disabled')
                 setEnabled(chat_id, False)
             elif text == '/image':
-                #img = Image.new('RGB', (512, 512))
-                #base = random.randint(0, 16777216)
-                #pixels = [base+i*j for i in range(512) for j in range(512)]  # generate sample image
-                #img.putdata(pixels)
-                #output = StringIO.StringIO()
-                #img.save(output, 'JPEG')
                 img = Image.open("dad.jpg")
                 output = StringIO.StringIO()
+                img.save(output, 'JPEG')
                 reply(img=output.getvalue())
             else:
                 reply('What command?')
 
         # CUSTOMIZE FROM HERE
 
-        elif 'who are you' in text:
-            reply('telebot starter kit, created by yukuku: https://github.com/yukuku/telebot')
-        elif 'what time' in text:
-            reply('look at the top-right corner of your screen!')
+        #elif 'who are you' in text:
+        #    reply('telebot starter kit, created by yukuku: https://github.com/yukuku/telebot')
+        #elif 'what time' in text:
+        #    reply('look at the top-right corner of your screen!')
         else:
             if getEnabled(chat_id):
                 try:
