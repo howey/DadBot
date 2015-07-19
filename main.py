@@ -39,6 +39,12 @@ def getEnabled(chat_id):
         return es.enabled
     return False
 
+def lineCount(file):
+    with open(file) as f: 
+        for i, l in enumerate(f):
+            pass
+    return i + 1
+
 
 # ================================
 
@@ -117,6 +123,15 @@ class WebhookHandler(webapp2.RequestHandler):
                 output = StringIO.StringIO()
                 img.save(output, 'JPEG')
                 reply(img=output.getvalue())
+            elif text == '/dadtweet':
+                lc = lineCount("Zanaktua_tweets.csv")
+                tweets = open("Zanaktua_tweets.csv", "r")
+                ln = random.randint(0, lc)
+                i = 0
+                for line in tweets:
+                    if i == ln:
+                        reply(line)
+                    i = i + 1
             else:
                 reply('What command?')
 
